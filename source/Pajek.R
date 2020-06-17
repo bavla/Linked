@@ -4,8 +4,6 @@
 #
 # by Vladimir Batagelj, November 2019
 #
-# https://github.com/bavla/cluRC/blob/master/readPajekNet.R
-#
 
 clu2vector <- function(f,skip=1){
   read.table(f,skip=skip,colClasses=c("integer"),header=FALSE)$V1
@@ -22,7 +20,8 @@ net2matrix <- function(f,skip=0){
    S <- unlist(strsplit(trimws(L[st[1]]),'[[:space:]]+'))
    n <- as.integer(S[2]); n1 <- st[1]+1; n2 <- st[2]-1
    m1 <- st[2]+1; m2 <- length(L); m <- m2-m1+1
-   Names <- unlist(strsplit(L[n1:n2],'"'))[2*(1:n)]
+   S <- strsplit(L[n1:n2],'"'); Names <- rep("",n)
+   for(i in 1:n) Names[i] <- S[[i]][2]
    R <- matrix(data=0,nrow=n,ncol=n,dimnames=list(Names,Names))
    S <- unlist(strsplit(trimws(L[m1:m2]),'[[:space:]]+'))
    b <- as.integer(S[3*(1:m)-2]); e <- as.integer(S[3*(1:m)-1]); v <- as.numeric(S[3*(1:m)])
