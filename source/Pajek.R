@@ -37,7 +37,7 @@ net2pairs <- function(f,skip=0){
    S <- unlist(strsplit(trimws(D[st[1]]),'[[:space:]]+'))
    n <- as.integer(S[2]); n1 <- st[1]+1; n2 <- st[2]-1
    m1 <- st[2]+1; m2 <- length(D); m <- m2-m1+1
-   I <- list(nNodes=n,nArcs=m,simple=TRUE,directed=TRUE)
+   I <- list(nNodes=n,nArcs=m,simple=TRUE,directed=TRUE,org=1)
    S <- strsplit(D[n1:n2],'"'); Names <- rep("",n)
    for(i in 1:n) Names[i] <- S[[i]][2]
    R <- matrix(data=0,nrow=n,ncol=n,dimnames=list(Names,Names))
