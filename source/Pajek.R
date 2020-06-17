@@ -43,7 +43,7 @@ net2pairs <- function(f,skip=0){
    S <- unlist(strsplit(trimws(D[m1:m2]),'[[:space:]]+'))
    b <- as.integer(S[3*(1:m)-2]); e <- as.integer(S[3*(1:m)-1]); v <- as.numeric(S[3*(1:m)])
    L <- vector('list',m)
-   for(i in 1:m) L[[i]] <- list(n1=b[i],n2=e[i],w=v[i])
+   for(i in 1:m) L[[i]] <- list(n1=b[i],n2=e[i],w=v[i],type="arc")
    return(list(info=I,nodes=N,links=L))
 }
 
