@@ -38,13 +38,12 @@ net2pairs <- function(f,skip=0){
    n <- as.integer(S[2]); n1 <- st[1]+1; n2 <- st[2]-1
    m1 <- st[2]+1; m2 <- length(D); m <- m2-m1+1
    I <- list(nNodes=n,nArcs=m,simple=TRUE,directed=TRUE,org=1)
-   S <- strsplit(D[n1:n2],'"'); Names <- rep("",n)
-   for(i in 1:n) Names[i] <- S[[i]][2]
-   R <- matrix(data=0,nrow=n,ncol=n,dimnames=list(Names,Names))
-   N <- data.frame(id=1:n,lab=Names)
+   S <- strsplit(D[n1:n2],'"'); N <- vector('list',n)
+   for(i in 1:n) N[[i]] <- list(id=i,lab=S[[i]][2])
    S <- unlist(strsplit(trimws(D[m1:m2]),'[[:space:]]+'))
    b <- as.integer(S[3*(1:m)-2]); e <- as.integer(S[3*(1:m)-1]); v <- as.numeric(S[3*(1:m)])
-   L <- data.frame(n1=b,n2=e,w=v)
+   L <- vector('list',m)
+   for(i in 1:m) L[[i]] <- list(n1=b[i],n2=e[i],w=v[i])
    return(list(info=I,nodes=N,links=L))
 }
 
