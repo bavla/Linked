@@ -2,6 +2,8 @@
 
 ## Pajek.R
 
+Reading and saving of Pajek data in R (matrices and vectors).
+
 ## netsBM.py
 
 The modul netsBM implements generalized blockmodeling procedure for binary networks based on network analysis package Nets.
