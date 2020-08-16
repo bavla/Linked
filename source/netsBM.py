@@ -41,7 +41,7 @@ def P(net,C,Types):
     rB = (rCnt>0).astype(int); cB = (cCnt>0).astype(int)        
     for i in range(nC):
         for s in range(n):
-            rPos[i,C[s]] += rB[i,s]; cPos[C[s],i] += cB[i,s]
+            rPos[C[s],i] += rB[i,s]; cPos[i,C[s]] += cB[i,s]
     for i in range(nC):
         for j in range(nC):
             err = np.inf; typ = XXX
