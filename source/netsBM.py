@@ -63,6 +63,10 @@ def P(net,C,Types):
             if CRE in Types[i,j]: 
                 ert = (size[j]-cPos[i,j])*size[i] 
                 if ert < err: err = ert; typ = CRE
+            if DEN in Types[i,j]: 
+                ert = max(int(dProp*size[i]*(size[i]-1))-Cnt[i,j]+dCnt[i],0) if i==j \
+                      else max(int(dProp*size[i]*size[j])-Cnt[i,j],0)
+                if ert < err: err = ert; typ = DEN
             error[i,j] = err; btype[i,j] = typ
     return (np.sum(error), error, btype)
 
@@ -133,8 +137,8 @@ net = N.loadPajek(ddir+"/class.net"); net.Info()
 # net = N.loadPajek(ddir+"/dolphins.net"); net.Info()
 # net = N.loadPajek(ddir+"/USAir97.net"); net.Info()
 
-XXX = 0; NUL = 1; COM = 2; REG = 3; RRE = 4; CRE = 5
-n = net._info['nNodes']; nC = 3; Q = [3,3,9] 
+XXX = 0; NUL = 1; COM = 2; REG = 3; RRE = 4; CRE = 5; DEN = 6
+n = net._info['nNodes']; nC = 3; Q = [3,3,9]; dProp=0.5 
 strEq = np.array([{NUL,COM}]*(nC*nC),dtype='O').reshape(nC,nC)
 
 # n = net._info['nNodes']; nC = 6
